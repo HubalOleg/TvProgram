@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TvProgram</string>
+    <string name="dialog_title">Download</string>
+    <string name="dialog_text">Wait!</string>
 </resources>
