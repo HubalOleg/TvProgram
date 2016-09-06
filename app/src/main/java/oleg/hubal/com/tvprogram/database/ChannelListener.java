@@ -10,5 +10,5 @@ import oleg.hubal.com.tvprogram.database.model.Channel;
 public interface ChannelListener {
     public void addChannel(Channel chanel);
     public ArrayList<Channel> getAllChannel();
-    public int getCHannelCount();
+    public int getChannelCount();
 }

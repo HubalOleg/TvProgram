@@ -1,19 +1,19 @@
 package oleg.hubal.com.tvprogram;
 
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.ArrayList;
 
+import oleg.hubal.com.tvprogram.api.NetworkUtils;
 import oleg.hubal.com.tvprogram.api.RequestTask;
+import oleg.hubal.com.tvprogram.database.DBHandler;
+import oleg.hubal.com.tvprogram.database.model.Channel;
 
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<Channel> channelArrayList;
+    DBHandler handler;
 
     private RequestTask requestTask;
 
@@ -21,12 +21,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        startRequest();
+//TODO check database
+        NetworkUtils utils = new NetworkUtils(MainActivity.this);
+        if(utils.isConnectingToInternet()) {
+            startRequest();
+        }
     }
 
     private void startRequest() {
-        requestTask = new RequestTask(this);
+        requestTask = new RequestTask(this, Constants.CHANNEL_JSON);
         requestTask.execute();
     }
 

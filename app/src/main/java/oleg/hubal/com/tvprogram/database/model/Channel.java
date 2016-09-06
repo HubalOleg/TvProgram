@@ -4,27 +4,31 @@ package oleg.hubal.com.tvprogram.database.model;
  * Created by User on 05.09.2016.
  */
 public class Channel {
-    private String id;
+    private int id;
+    private String jsonId;
     private String name;
     private String tvURL;
     private String category;
+    private int isFavorite;
 
     public Channel() {
     }
 
-    public Channel(String id, String name, String tvURL, String category) {
+    public Channel(int id, String jsonId, String name, String tvURL, String category) {
         this.id = id;
+        this.jsonId = jsonId;
         this.name = name;
         this.tvURL = tvURL;
         this.category = category;
+        isFavorite = 0;
     }
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -50,5 +54,21 @@ public class Channel {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(int isFavorite) {
+        this.isFavorite = isFavorite;
+    }
+
+    public String getJsonId() {
+        return jsonId;
+    }
+
+    public void setJsonId(String jsonId) {
+        this.jsonId = jsonId;
     }
 }
