@@ -23,6 +23,14 @@ public class Channel {
         isFavorite = 0;
     }
 
+    @Override
+    public String toString() {
+        return  "jsonId: " + jsonId +
+                "\nname: " + name +
+                "\ntvUrl: " + tvURL +
+                "\ncategory: " + category +
+                "\n";
+    }
 
     public int getId() {
         return id;
