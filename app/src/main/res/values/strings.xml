@@ -2,4 +2,14 @@
     <string name="app_name">TvProgram</string>
     <string name="dialog_title">Download</string>
     <string name="dialog_text">Wait!</string>
+    <string name="menu">Menu</string>
+    <string name="open_menu">Open</string>
+    <string name="close_menu">Close</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="navig_items">
+        <item>TV Listings</item>
+        <item>Channel list</item>
+        <item>Categories</item>
+        <item>Favorite channels</item>
+    </string-array>
 </resources>

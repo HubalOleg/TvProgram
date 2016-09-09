@@ -1,7 +1,6 @@
 package oleg.hubal.com.tvprogram.api;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;
@@ -85,7 +84,7 @@ public class StaticInfoRequest extends AsyncTask<String, Integer, Void> {
     @Override
     protected void onPostExecute(Void v) {
         super.onPostExecute(v);
-        activity.setProgramData();
+        activity.buildProgram();
         progressDialog.dismiss();
     }
 }
