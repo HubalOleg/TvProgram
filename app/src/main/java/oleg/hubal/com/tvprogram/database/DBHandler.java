@@ -49,16 +49,19 @@ public class DBHandler extends SQLiteOpenHelper implements ChannelListener {
     }
 
     @Override
-    public void addChannel(Channel channel) {
+    public void addChannels(ArrayList<Channel> channels) {
         SQLiteDatabase db = this.getWritableDatabase();
         try{
-            ContentValues values = new ContentValues();
-            values.put(KEY_JSON_ID, channel.getJsonId());
-            values.put(KEY_NAME, channel.getName());
-            values.put(KEY_TVURL, channel.getTvURL());
-            values.put(KEY_CATEGORY, channel.getCategory());
-            values.put(KEY_FAVORITE, channel.getIsFavorite());
-            db.insert(TABLE_NAME, null, values);
+            for(Channel channel : channels) {
+                ContentValues values = new ContentValues();
+                values.put(KEY_JSON_ID, channel.getJsonId());
+                values.put(KEY_NAME, channel.getName());
+                values.put(KEY_TVURL, channel.getTvURL());
+                values.put(KEY_CATEGORY, channel.getCategory());
+                values.put(KEY_FAVORITE, channel.getIsFavorite());
+//                Log.d("log123", channel.getName() + " was added to database");
+                db.insert(TABLE_NAME, null, values);
+            }
             db.close();
         } catch (Exception e) {
             Log.e("problem", e + "");
@@ -66,7 +69,7 @@ public class DBHandler extends SQLiteOpenHelper implements ChannelListener {
     }
 
     @Override
-    public ArrayList<Channel> getAllChannel() {
+    public ArrayList<Channel> getAllChannels() {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Channel> channelList = null;
         try{
