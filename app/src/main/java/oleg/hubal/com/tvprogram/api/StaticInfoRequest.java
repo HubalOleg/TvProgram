@@ -84,7 +84,6 @@ public class StaticInfoRequest extends AsyncTask<String, Integer, Void> {
     @Override
     protected void onPostExecute(Void v) {
         super.onPostExecute(v);
-        activity.buildProgram();
         progressDialog.dismiss();
     }
 }

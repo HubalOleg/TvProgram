@@ -1,15 +1,18 @@
 <resources>
     <string name="app_name">TvProgram</string>
-    <string name="dialog_title">Download</string>
-    <string name="dialog_text">Wait!</string>
-    <string name="menu">Menu</string>
-    <string name="open_menu">Open</string>
-    <string name="close_menu">Close</string>
-    <string name="action_settings">Settings</string>
+    <string name="dialog_title">Програма выполняет загрузку.</string>
+    <string name="dialog_text">Подождите!</string>
+    <string name="menu">Меню</string>
+    <string name="open_menu">Открыть</string>
+    <string name="close_menu">Закрыть</string>
+    <string name="action_settings">Настройки</string>
+    <string name="tv_card_URL">Сайт:</string>
+    <string name="tv_card_category">Категория:</string>
+    <string name="category">Выбирите категорию</string>
     <string-array name="navig_items">
-        <item>TV Listings</item>
-        <item>Channel list</item>
-        <item>Categories</item>
-        <item>Favorite channels</item>
+        <item>Телепрограмма</item>
+        <item>Список каналов</item>
+        <item>Категории</item>
+        <item>Любимые каналы</item>
     </string-array>
 </resources>

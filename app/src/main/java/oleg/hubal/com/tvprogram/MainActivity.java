@@ -2,7 +2,6 @@ package oleg.hubal.com.tvprogram;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
@@ -19,12 +18,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import oleg.hubal.com.tvprogram.api.NetworkUtils;
 import oleg.hubal.com.tvprogram.api.StaticInfoRequest;
-import oleg.hubal.com.tvprogram.database.DBHandler;
-import oleg.hubal.com.tvprogram.database.model.Channel;
+import oleg.hubal.com.tvprogram.fragments.CategoryFragment;
+import oleg.hubal.com.tvprogram.fragments.ChannelListFragment;
+import oleg.hubal.com.tvprogram.fragments.FirstFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        buildNavigationDrawer();
         this.savedInstanceState = savedInstanceState;
         checkData();
     }
@@ -54,28 +53,22 @@ public class MainActivity extends AppCompatActivity {
         boolean isDownloaded = sPref.getBoolean(Constants.SHARED_PREF_DWNLD, false);
 
         if(!isDownloaded) {
-            if(utils.isConnectingToInternet()) {
+            if (utils.isConnectingToInternet()) {
 //                StartRequest
                 requestTask = new StaticInfoRequest(this);
                 requestTask.execute();
             } else {
                 Toast.makeText(this, "Internet connection is disable", Toast.LENGTH_LONG).show();
             }
-        } else {
-            buildProgram();
         }
-    }
-
-    public void buildProgram() {
-        buildNavigationDrawer();
     }
 
     private void buildNavigationDrawer() {
         title = getTitle();
         drawerTitle = getResources().getString(R.string.menu);
         viewsNames = getResources().getStringArray(R.array.navig_items);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerList = (ListView) findViewById(R.id.left_drawer);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_AM);
+        drawerList = (ListView) findViewById(R.id.left_drawer_AM);
 
         drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, viewsNames));
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
@@ -119,10 +112,10 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new FirstFragment();
                 break;
             case 1:
-                Log.d("log123", "second fragment");
+                fragment = new ChannelListFragment();
                 break;
             case 2:
-                Log.d("log123", "third fragment");
+                fragment = new CategoryFragment();
                 break;
             case 3:
                 Log.d("log123", "fourth fragment");
@@ -132,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         if (fragment != null) {
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame, fragment)
+                    .replace(R.id.content_frame_AM, fragment)
                     .commit();
 
             drawerList.setItemChecked(position, true);

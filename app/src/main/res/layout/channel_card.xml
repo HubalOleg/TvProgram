@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/channel_card_CC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/cardview_margin"
+        app:cardBackgroundColor="@android:color/secondary_text_dark">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/channel_card_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/cardview_text"
+                android:text="@string/tv_card_category"
+                android:layout_below="@+id/channel_card_title_CC"
+                />
+            <TextView
+                android:id="@+id/channel_card_category_CC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/channel_card_title_CC"
+                android:layout_toRightOf="@id/channel_card_category"
+                android:textSize="@dimen/cardview_text"
+                />
+            <TextView
+                android:id="@+id/channel_card_URL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/channel_card_category"
+                android:textSize="@dimen/cardview_text"
+                android:text="@string/tv_card_URL"
+                 />
+            <TextView
+                android:id="@+id/channel_card_URL_CC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/channel_card_category"
+                android:layout_toRightOf="@id/channel_card_URL"
+                android:textSize="@dimen/cardview_text"
+                />
+
+            <TextView
+                android:id="@+id/channel_card_title_CC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/cardview_title"
+                android:layout_centerHorizontal="true" />
+
+            <ImageButton
+                android:id="@+id/img_btn_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@android:drawable/star_on"
+                />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

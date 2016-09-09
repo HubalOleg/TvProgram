@@ -1,10 +1,12 @@
-package oleg.hubal.com.tvprogram;
+package oleg.hubal.com.tvprogram.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import oleg.hubal.com.tvprogram.R;
 
 /**
  * Created by User on 09.09.2016.
