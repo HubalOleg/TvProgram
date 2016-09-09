@@ -11,4 +11,5 @@ public class Constants {
     public static final String SHARED_PREF_FILE =      "shared_pref_file";
     public static final String SHARED_PREF_CHANNEL =    "channel_list";
     public static final String SHARED_PREF_CATEGORY =   "category_list";
+    public static final String SHARED_PREF_DWNLD =      "shared_pref_dwnlded";
 }

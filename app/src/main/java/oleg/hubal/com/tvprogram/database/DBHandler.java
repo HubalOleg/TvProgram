@@ -90,7 +90,7 @@ public class DBHandler extends SQLiteOpenHelper implements ChannelListener {
             }
             db.close();
         } catch (Exception e){
-            Log.e("error", e+"");
+            Log.e("error", e + "");
         }
         return channelList;
     }

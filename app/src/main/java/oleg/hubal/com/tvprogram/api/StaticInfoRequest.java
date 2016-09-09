@@ -3,7 +3,6 @@ package oleg.hubal.com.tvprogram.api;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -12,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import oleg.hubal.com.tvprogram.Constants;
+import oleg.hubal.com.tvprogram.MainActivity;
 import oleg.hubal.com.tvprogram.R;
 
 /**
@@ -20,17 +20,17 @@ import oleg.hubal.com.tvprogram.R;
 public class StaticInfoRequest extends AsyncTask<String, Integer, Void> {
 
     private ProgressDialog progressDialog;
-    private Context context;
+    private MainActivity activity;
     private DataHandler dataHandler;
 
     private HttpURLConnection urlConnection = null;
     private BufferedReader reader           = null;
-    private String channelJson               = "";
+    private String channelJson              = "";
     private String categoryJson             = "";
 
-    public StaticInfoRequest(Context context) {
-        this.context = context;
-        dataHandler = new DataHandler(context);
+    public StaticInfoRequest(MainActivity activity) {
+        this.activity = activity;
+        dataHandler = new DataHandler(activity);
     }
 
     @Override
@@ -42,6 +42,7 @@ public class StaticInfoRequest extends AsyncTask<String, Integer, Void> {
 //        Download JSON categories
         categoryJson = getJsonResult(Constants.CATEGORY_JSON);
         dataHandler.saveCategories(categoryJson);
+        dataHandler.setDataDownloaded();
 
         return null;
     }
@@ -76,15 +77,15 @@ public class StaticInfoRequest extends AsyncTask<String, Integer, Void> {
     protected void onPreExecute() {
         super.onPreExecute();
 
-        progressDialog = ProgressDialog.show(context,
-                context.getString(R.string.dialog_title),
-                context.getString(R.string.dialog_text));
+        progressDialog = ProgressDialog.show(activity,
+                activity.getString(R.string.dialog_title),
+                activity.getString(R.string.dialog_text));
     }
 
     @Override
     protected void onPostExecute(Void v) {
         super.onPostExecute(v);
-
+        activity.setProgramData();
         progressDialog.dismiss();
     }
 }

@@ -102,4 +102,10 @@ public class DataHandler {
         sEditor.putStringSet(Constants.SHARED_PREF_CATEGORY, categorySet);
         sEditor.apply();
     }
+
+    public void setDataDownloaded() {
+        SharedPreferences.Editor sEditor = sPref.edit();
+        sEditor.putBoolean(Constants.SHARED_PREF_DWNLD, true);
+        sEditor.apply();
+    }
 }

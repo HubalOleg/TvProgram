@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -23,18 +24,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//TODO check database
-        NetworkUtils utils = new NetworkUtils(MainActivity.this);
-        if(utils.isConnectingToInternet()) {
-            startRequest();
-        }
-
-        method();
+        checkData();
     }
 
-    private void method() {
+    private void checkData() {
+        NetworkUtils utils = new NetworkUtils(MainActivity.this);
         SharedPreferences sPref = getSharedPreferences(Constants.SHARED_PREF_FILE, MODE_PRIVATE);
-        Log.d("log123", sPref.getStringSet(Constants.SHARED_PREF_CATEGORY, null).toString());
+        boolean isDownloaded = sPref.getBoolean(Constants.SHARED_PREF_DWNLD, false);
+
+        if(!isDownloaded) {
+            if(utils.isConnectingToInternet()) {
+                startRequest();
+            } else {
+                Toast.makeText(this, "Internet connection is disable", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            setProgramData();
+        }
+    }
+
+    public void setProgramData() {
+        Log.d("log123", "dratuti");
     }
 
     private void startRequest() {
