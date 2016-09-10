@@ -118,7 +118,10 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new CategoryFragment();
                 break;
             case 3:
-                Log.d("log123", "fourth fragment");
+                fragment = new ChannelListFragment();
+                Bundle bundle = new Bundle();
+                bundle.putBoolean(Constants.BUNDLE_ONLY_FAVORITE, true);
+                fragment.setArguments(bundle);
                 break;
         }
 

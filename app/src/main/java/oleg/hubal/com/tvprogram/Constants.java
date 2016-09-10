@@ -12,4 +12,6 @@ public class Constants {
     public static final String SHARED_PREF_CHANNEL =    "channel_list";
     public static final String SHARED_PREF_CATEGORY =   "category_list";
     public static final String SHARED_PREF_DWNLD =      "shared_pref_dwnlded";
+    public static final String BUNDLE_ONLY_FAVORITE =   "only_favorite";
+    public static final String BUNDLE_CATEGORY_ARG =    "category_argument";
 }

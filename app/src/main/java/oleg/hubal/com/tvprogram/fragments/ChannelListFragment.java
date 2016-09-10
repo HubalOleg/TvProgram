@@ -4,12 +4,14 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import oleg.hubal.com.tvprogram.Constants;
 import oleg.hubal.com.tvprogram.R;
 import oleg.hubal.com.tvprogram.database.DBHandler;
 import oleg.hubal.com.tvprogram.database.model.Channel;
@@ -40,6 +42,37 @@ public class ChannelListFragment extends Fragment {
     private void getData() {
         dbHandler = new DBHandler(getActivity());
         channels = dbHandler.getAllChannels();
+
+        filterData();
+    }
+
+    private void filterData() {
+        Bundle data = getArguments();
+        if (data != null) {
+            boolean filterFavorite = data.getBoolean(Constants.BUNDLE_ONLY_FAVORITE, false);
+//  Check arguments and filter data if need
+            if (filterFavorite) {
+                ArrayList<Channel> favoriteChannels = new ArrayList<>();
+                for (Channel channel : channels) {
+                    if (channel.getIsFavorite() == 1) {
+                        favoriteChannels.add(channel);
+                    }
+                }
+                channels = favoriteChannels;
+            } else {
+                String category = data.getString(Constants.BUNDLE_CATEGORY_ARG, null);
+                if (category != null) {
+                    ArrayList<Channel> categoryChannels = new ArrayList<>();
+                    for (Channel channel : channels) {
+                        if (category.equals(channel.getCategory())) {
+                            categoryChannels.add(channel);
+                        }
+                    }
+
+                    channels = categoryChannels;
+                }
+            }
+        }
     }
 
     private void setRecyclerView() {

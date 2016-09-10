@@ -1,9 +1,11 @@
 package oleg.hubal.com.tvprogram.fragments;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -61,6 +64,20 @@ public class CategoryFragment extends Fragment implements AdapterView.OnItemClic
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        Get clicked category
+        TextView clickedView = (TextView) view;
+        String categoryArgument = clickedView.getText().toString();
 
+//        Set argument and start fragment
+        ChannelListFragment channelListFragment = new ChannelListFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.BUNDLE_CATEGORY_ARG, categoryArgument);
+        channelListFragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame_AM, channelListFragment)
+                .commit();
     }
 }
