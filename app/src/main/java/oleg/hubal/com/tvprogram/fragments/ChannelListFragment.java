@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +14,13 @@ import oleg.hubal.com.tvprogram.Constants;
 import oleg.hubal.com.tvprogram.R;
 import oleg.hubal.com.tvprogram.database.DBHandler;
 import oleg.hubal.com.tvprogram.database.model.Channel;
+import oleg.hubal.com.tvprogram.ChannelManager;
 import oleg.hubal.com.tvprogram.list.ChannelAdapter;
 
 /**
  * Created by User on 09.09.2016.
  */
-public class ChannelListFragment extends Fragment {
+public class ChannelListFragment extends Fragment implements ChannelManager {
 
     private RecyclerView channelRecyclerView;
     private RecyclerView.Adapter channelAdapter;
@@ -82,9 +82,13 @@ public class ChannelListFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         channelRecyclerView.setLayoutManager(layoutManager);
 
-        channelAdapter = new ChannelAdapter(channels);
+        channelAdapter = new ChannelAdapter(channels, this);
         channelRecyclerView.setAdapter(channelAdapter);
 
     }
 
+    @Override
+    public void setFavorite(int id, int isFavorite) {
+        dbHandler.setFavorite(id, isFavorite);
+    }
 }

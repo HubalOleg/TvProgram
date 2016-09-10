@@ -11,4 +11,5 @@ public interface ChannelListener {
     public void addChannels(ArrayList<Channel> channels);
     public ArrayList<Channel> getAllChannels();
     public int getChannelCount();
+    public void setFavorite(int id, int isFavorite);
 }

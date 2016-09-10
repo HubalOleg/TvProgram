@@ -109,4 +109,18 @@ public class DBHandler extends SQLiteOpenHelper implements ChannelListener {
         }
         return 0;
     }
+
+    @Override
+    public void setFavorite(int id, int isFavorite) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            String where = KEY_ID + "=" + id;
+            ContentValues cv = new ContentValues();
+            cv.put(KEY_FAVORITE, isFavorite);
+            db.update(TABLE_NAME, cv, where, null);
+            db.close();
+        } catch (Exception e) {
+            Log.e("error", e + "");
+        }
+    }
 }

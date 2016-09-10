@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
                 requestTask = new StaticInfoRequest(this);
                 requestTask.execute();
             } else {
-                Toast.makeText(this, "Internet connection is disable", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.no_internet_toast, Toast.LENGTH_LONG).show();
+                finish();
             }
         }
     }
