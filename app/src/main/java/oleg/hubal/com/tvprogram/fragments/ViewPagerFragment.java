@@ -2,6 +2,7 @@ package oleg.hubal.com.tvprogram.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,14 +31,21 @@ public class ViewPagerFragment extends Fragment {
     private PagerAdapter pagerAdapter;
     private View view;
     private String[] channels;
+    private SharedPreferences sPref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_view_pager, container, false);
         getChannelList();
+        setSpinner();
         initPager();
         return view;
+    }
+
+    private void setSpinner() {
+        sPref = getActivity().getSharedPreferences(Constants.SHARED_PREF_FILE, Context.MODE_PRIVATE);
+
     }
 
     private void initPager() {

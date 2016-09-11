@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".DrawerActivity"
             android:screenOrientation="portrait"/>
+        <service android:name=".service.TvListingDownloaderService"/>
+        <receiver android:name=".service.AlarmReceiver"/>
     </application>
 
 </manifest>

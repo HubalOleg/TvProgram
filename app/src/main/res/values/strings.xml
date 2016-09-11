@@ -5,11 +5,17 @@
     <string name="menu">Меню</string>
     <string name="open_menu">Открыть</string>
     <string name="close_menu">Закрыть</string>
-    <string name="action_settings">Настройки</string>
+    <string name="action_settings">Обновить данные</string>
     <string name="tv_card_URL">Сайт:</string>
     <string name="tv_card_category">Категория:</string>
     <string name="category">Выбирите категорию</string>
     <string name="no_internet_toast">Ошибка подключения к сети</string>
+    <string name="toast_already_downloaded">Данные уже скачаны</string>
+    <string name="btn_show">Показать</string>
+    <string name="notify_text">Данные скачаны</string>
+    <string name="notify_title">Уведомление</string>
+    <string name="choose_day">Выбирите день: </string>
+    <string name="notify_download_disable">Загрузка невозможна. Подключите интернет соединения!</string>
     <string-array name="navig_items">
         <item>Телепрограмма</item>
         <item>Список каналов</item>

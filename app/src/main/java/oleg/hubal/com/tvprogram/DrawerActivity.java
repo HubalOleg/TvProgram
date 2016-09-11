@@ -1,5 +1,9 @@
 package oleg.hubal.com.tvprogram;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,9 +20,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+
 import oleg.hubal.com.tvprogram.fragments.CategoryListFragment;
 import oleg.hubal.com.tvprogram.fragments.ChannelListFragment;
 import oleg.hubal.com.tvprogram.fragments.ViewPagerFragment;
+import oleg.hubal.com.tvprogram.service.AlarmReceiver;
 
 /**
  * Created by User on 11.09.2016.
@@ -39,6 +47,12 @@ public class DrawerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
+
+
+//        Intent intent = new Intent(this, TvListingDownloaderService.class);
+//        startService(intent);
+
+
         this.savedInstanceState = savedInstanceState;
         buildNavigationDrawer();
     }
@@ -132,17 +146,33 @@ public class DrawerActivity extends AppCompatActivity {
             return true;
         }
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.action_set_alarm:
+                setRecurringAlarm();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    public void setRecurringAlarm() {
+        Calendar updateTime = Calendar.getInstance();
+        updateTime.setTimeZone(TimeZone.getTimeZone("GMT"));
+        updateTime.set(Calendar.HOUR_OF_DAY, 11);
+        updateTime.set(Calendar.MINUTE, 45);
+
+        Intent downloader = new Intent(this, AlarmReceiver.class);
+        PendingIntent reccuringDownload = PendingIntent.getBroadcast(this,
+                0, downloader, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarms = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarms.setInexactRepeating(AlarmManager.RTC_WAKEUP, updateTime.getTimeInMillis(),
+                AlarmManager.INTERVAL_HALF_DAY, reccuringDownload);
+
+    }
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         boolean drawerOpen = drawerLayout.isDrawerOpen(drawerList);
-        menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+        menu.findItem(R.id.action_set_alarm).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
 

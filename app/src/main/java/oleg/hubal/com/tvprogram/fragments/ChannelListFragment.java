@@ -89,6 +89,6 @@ public class ChannelListFragment extends Fragment implements ChannelManager {
 
     @Override
     public void setFavorite(int id, int isFavorite) {
-        dbHandler.setFavorite(id, isFavorite);
+        dbHandler.setFavoriteChannel(id, isFavorite);
     }
 }

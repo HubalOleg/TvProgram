@@ -1,5 +1,8 @@
 package oleg.hubal.com.tvprogram;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -19,16 +22,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+
 import oleg.hubal.com.tvprogram.api.NetworkUtils;
 import oleg.hubal.com.tvprogram.api.StaticInfoRequest;
 import oleg.hubal.com.tvprogram.fragments.CategoryListFragment;
 import oleg.hubal.com.tvprogram.fragments.ChannelListFragment;
 import oleg.hubal.com.tvprogram.fragments.ViewPagerFragment;
+import oleg.hubal.com.tvprogram.service.AlarmReceiver;
 
 public class MainActivity extends AppCompatActivity {
 
     private StaticInfoRequest requestTask;
-
 
     private boolean isDownloaded;
 
