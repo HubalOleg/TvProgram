@@ -9,7 +9,7 @@
     <string name="tv_card_URL">Сайт:</string>
     <string name="tv_card_category">Категория:</string>
     <string name="category">Выбирите категорию</string>
-    <string name="no_internet_toast">Turn on the internet</string>
+    <string name="no_internet_toast">Ошибка подключения к сети</string>
     <string-array name="navig_items">
         <item>Телепрограмма</item>
         <item>Список каналов</item>

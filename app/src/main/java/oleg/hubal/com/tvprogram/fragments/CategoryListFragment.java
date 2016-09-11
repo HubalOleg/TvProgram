@@ -1,10 +1,11 @@
 package oleg.hubal.com.tvprogram.fragments;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,7 @@ import oleg.hubal.com.tvprogram.R;
 /**
  * Created by User on 09.09.2016.
  */
-public class CategoryFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class CategoryListFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private String[] categories;
     private ListView listView;
