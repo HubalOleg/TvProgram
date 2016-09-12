@@ -17,4 +17,5 @@ public class Constants {
     public static final String BUNDLE_CATEGORY_ARG =        "category_argument";
     public static final String SHARED_PREF_DAYS =           "sharef_pref_days";
     public static final String SHARED_PREF_PROGRAM_DWNL =   "shared_pref_prgm_dwnl";
+    public static final String BUNDLE_PROGRAMS =            "bundle_programs";
 }

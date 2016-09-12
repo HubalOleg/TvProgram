@@ -16,6 +16,7 @@
     <string name="notify_title">Уведомление</string>
     <string name="choose_day">Выбирите день: </string>
     <string name="notify_download_disable">Загрузка невозможна. Подключите интернет соединения!</string>
+    <string name="tv_card_show">Телепередача:</string>
     <string-array name="navig_items">
         <item>Телепрограмма</item>
         <item>Список каналов</item>

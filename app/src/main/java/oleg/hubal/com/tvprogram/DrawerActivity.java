@@ -27,6 +27,7 @@ import oleg.hubal.com.tvprogram.fragments.CategoryListFragment;
 import oleg.hubal.com.tvprogram.fragments.ChannelListFragment;
 import oleg.hubal.com.tvprogram.fragments.ViewPagerFragment;
 import oleg.hubal.com.tvprogram.service.AlarmReceiver;
+import oleg.hubal.com.tvprogram.service.TvListingDownloaderService;
 
 /**
  * Created by User on 11.09.2016.
@@ -148,6 +149,8 @@ public class DrawerActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_set_alarm:
                 setRecurringAlarm();
+                Intent intent = new Intent(this, TvListingDownloaderService.class);
+                startService(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -40,7 +40,6 @@ public class TvListingDownloaderService extends Service {
 
     private static final String DEBUG_TAG = "TvListingDownloaderService";
     private DownloaderTask listingDownloader;
-    private ProgramHandler programHandler;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -66,13 +65,27 @@ public class TvListingDownloaderService extends Service {
         private String programJson                  = "";
         private HttpURLConnection urlConnection     = null;
         private BufferedReader reader               = null;
-        private ProgramHandler programHandler;
         private DBHandler dbHandler;
         private NetworkUtils networkUtils;
+        private boolean isDownloading;
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if(isDownloading)
+                stopSelf();
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            isDownloading = false;
+        }
 
         @Override
         protected Boolean doInBackground(Void... params) {
+            Log.d("log123", "listingdownload");
+            isDownloading = true;
             dbHandler = new DBHandler(getApplicationContext());
             saveJsonResult(Constants.URL + Constants.PROGRAM_JSON);
             return null;

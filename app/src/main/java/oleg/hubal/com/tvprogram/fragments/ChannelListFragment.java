@@ -76,7 +76,7 @@ public class ChannelListFragment extends Fragment implements ChannelManager {
     }
 
     private void setRecyclerView() {
-        channelRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_FCL);
+        channelRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_FChannelList);
         channelRecyclerView.setHasFixedSize(true);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());

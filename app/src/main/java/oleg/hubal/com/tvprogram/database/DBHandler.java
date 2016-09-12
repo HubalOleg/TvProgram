@@ -44,9 +44,9 @@ public class DBHandler extends SQLiteOpenHelper {
                             " TEXT," + KEY_FAVORITE_CHANNEL + " INTEGER)";
 
     String CREATE_TABLE_PROGRAM =
-                            "CREATE TABLE " + PROGRAM_TABLE_NAME + " (" + KEY_ID_PROGRAM +
-                            " INTEGER PRIMARY KEY," + KEY_DAY_PROGRAM + " TEXT," + KEY_DATE_PROGRAM +
-                            " INTEGER," + KEY_CHANNEL_PROGRAM + " TEXT," + KEY_SHOW_NAME + " TEXT)";
+                            "CREATE TABLE " + PROGRAM_TABLE_NAME + " (" + KEY_DAY_PROGRAM +
+                            " TEXT," + KEY_DATE_PROGRAM + " INTEGER," + KEY_CHANNEL_PROGRAM +
+                            " TEXT," + KEY_SHOW_NAME + " TEXT)";
 
 
     String DROP_TABLE_CHANNEL = "DROP TABLE IF EXISTS " + CHANNEL_TABLE_NAME;
@@ -86,6 +86,32 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
+    public ArrayList<Program> getProgramByDay(String day) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Program> programList = null;
+        try {
+            programList = new ArrayList<>();
+            String QUERY = "SELECT * FROM " + PROGRAM_TABLE_NAME + " WHERE "
+                    + KEY_DAY_PROGRAM + " = '" + day + "'";
+            Cursor cursor = db.rawQuery(QUERY, null);
+            if(!cursor.isLast()) {
+                while (cursor.moveToNext()) {
+                    Program program = new Program();
+                    program.setChannelName(cursor.getString(2));
+                    program.setDate(cursor.getInt(1));
+                    program.setShowName(cursor.getString(3));
+                    program.setDay(day);
+                    Log.d("log123", program.toString());
+                    programList.add(program);
+                }
+            }
+            db.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return programList;
+    }
+
     public void addChannels(ArrayList<Channel> channels) {
         SQLiteDatabase db = this.getWritableDatabase();
         try {
@@ -96,7 +122,6 @@ public class DBHandler extends SQLiteOpenHelper {
                 values.put(KEY_TVURL_CHANNEL, channel.getTvURL());
                 values.put(KEY_CATEGORY_CHANNEL, channel.getCategory());
                 values.put(KEY_FAVORITE_CHANNEL, channel.getIsFavorite());
-//                Log.d("log123", channel.getName() + " was added to database");
                 db.insert(CHANNEL_TABLE_NAME, null, values);
             }
             db.close();
@@ -108,7 +133,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<Channel> getAllChannels() {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Channel> channelList = null;
-        try{
+        try {
             channelList = new ArrayList<>();
             String QUERY = "SELECT * FROM " + CHANNEL_TABLE_NAME;
             Cursor cursor = db.rawQuery(QUERY, null);
@@ -129,20 +154,6 @@ public class DBHandler extends SQLiteOpenHelper {
             Log.e("error", e + "");
         }
         return channelList;
-    }
-
-    public int getChannelCount() {
-        int num = 0;
-        SQLiteDatabase db = this.getReadableDatabase();
-        try{
-            String QUERY = "SELECT * FROM " + CHANNEL_TABLE_NAME;
-            Cursor cursor = db.rawQuery(QUERY, null);
-            num = cursor.getCount();
-            return num;
-        } catch (Exception e) {
-            Log.e("error", e + "");
-        }
-        return 0;
     }
 
     public void setFavoriteChannel(int id, int isFavorite) {
